@@ -4,10 +4,19 @@ import ModeButtons from "./ModeButtons"
 import Prescription from "./Prescription"
 import Refills from "./Refills"
 import Doctor from "./Doctor"
+import { useState } from "react"
 
 function MedicationTableRow({initialMedicationData, initialEditing}) {
+    const [editMode, setEditMode] = useState(initialEditing)
+    //make the data types state 
+    const [prescription, setPrescription] = useState(initialMedicationData.prescription);
+    const [doctor, setDoctor] = useState(initialMedicationData.doctor);
+    const [instructions, setInstructions] = useState(initialMedicationData.instructions);
+    const [daySupply, setDaySupply] = useState(initialMedicationData.daySupply)
+    const [refills, setRefills] = useState(initialMedicationData.refills);
+
     //destructure the prop initialMedicationData
-    const { prescription, doctor, instructions, daySupply, refills} = initialMedicationData
+    // const { prescription, doctor, instructions, daySupply, refills} = initialMedicationData
 
   return (
     <tr>
