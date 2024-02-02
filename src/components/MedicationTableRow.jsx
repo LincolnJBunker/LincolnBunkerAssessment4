@@ -3,8 +3,10 @@ import Instructions from "./Instructions"
 import ModeButtons from "./ModeButtons"
 import Prescription from "./Prescription"
 import Refills from "./Refills"
+import Doctor from "./Doctor"
 
 function MedicationTableRow({initialMedicationData, initialEditing}) {
+    //destructure the prop initialMedicationData
     const { prescription, doctor, instructions, daySupply, refills} = initialMedicationData
 
   return (

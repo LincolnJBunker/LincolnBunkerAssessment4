@@ -1,15 +1,27 @@
 import MedicationTableHeader from "./MedicationTableHeader";
 import MedicationTableRow from "./MedicationTableRow";
 import AddMedicationButton from "./AddMedicationButton";
-import ModeButtons from "./ModeButtons";
-import Prescription from "./Prescription";
-import Doctor from "./Doctor";
-import Instructions from "./Instructions";
-import DaySupply from "./DaySupply";
-import Refills from "./Refills";
 
 
-function MedicationTable() {
+function MedicationTable({ initialMedicationData }) {
+    //pass in the prop of initialMedicationData
+    //loop through each object in the testArray
+    const rows = initialMedicationData.map((medication) => {
+        //destructure each individual medication to match the data
+        const {id, prescription, doctor, instructions, daySupply, refills} = medication
+
+        return (
+            <MedicationTableRow
+            //assing a key
+            key={id}
+            //start it at false
+            initialEditing={true}
+            //what is this doing haha??
+            initialMedicationData={{prescription, doctor, instructions, daySupply, refills}}
+            />
+        )
+    });
+
   return (
     <div>
         <table>
@@ -18,25 +30,7 @@ function MedicationTable() {
             </thead>
 
             <tbody>
-                <tr>
-                    <ModeButtons isEditing={false} />
-                    <Prescription value="Adderall" isEditing={false} />
-                    <Doctor value="Dr. Anderson" isEditing={false} />
-                    <Instructions value="Take 1 pill daily" isEditing={false} />
-                    <DaySupply value={30} isEditing={false} />
-                    <Refills value={0} is isEditing={false} />
-                </tr>
-            </tbody>
-
-            <tbody>
-                <tr>
-                    <ModeButtons isEditing={true} />
-                    <Prescription value="viagra" isEditing={true} />
-                    <Doctor value="Dr. Anderson" isEditing={true} />
-                    <Instructions value="Take 1 pill daily" isEditing={true} />
-                    <DaySupply value={30} isEditing={true} />
-                    <Refills value={0} is isEditing={true} />
-                </tr>
+                {rows}
             </tbody>
 
             <tfoot>
