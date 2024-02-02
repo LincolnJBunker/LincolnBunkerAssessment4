@@ -1,12 +1,11 @@
 function AddMedicationButton() {
   return (
-    <>
-    <td></td>
-    <td></td>
-    <td>
-        <button>Add Medication</button>
-    </td>
-    </>
+    <tr>
+        <td></td>
+        <td colSpan="4">
+            <button>Add Medication</button>
+        </td>
+    </tr>
   )
 }
 
