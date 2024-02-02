@@ -15,12 +15,19 @@ function MedicationTableRow({initialMedicationData, initialEditing}) {
     const [daySupply, setDaySupply] = useState(initialMedicationData.daySupply)
     const [refills, setRefills] = useState(initialMedicationData.refills);
 
+    const makeEditMode = () => setEditMode(true);
+    const makeNormalMode = () => setEditMode(false)
+
     //destructure the prop initialMedicationData
     // const { prescription, doctor, instructions, daySupply, refills} = initialMedicationData
 
   return (
     <tr>
-        <ModeButtons value={false} />
+        <ModeButtons 
+        isEditing={editMode}
+        SaveClick={makeNormalMode}
+        EditClick={makeEditMode}
+        />
         <Prescription value={prescription} isEditing={initialEditing} />
         <Doctor value={doctor} isEditing={initialEditing} />
         <Instructions value={instructions} isEditing={initialEditing}/>

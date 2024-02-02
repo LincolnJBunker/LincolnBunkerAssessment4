@@ -1,17 +1,19 @@
-import { useState } from "react";
-
-function ModeButtons({ isEditing }) {
+function ModeButtons({ isEditing, saveClick, editClick }) {
     //need to differenciate the different states of save and delete/edit
 
 
   return isEditing ? (
     <td>
-        <button>Save</button>
+        <button
+        onClick={saveClick}
+        >Save</button>
     </td>
   ) : (
     <td>
         <button>Delete</button>
-        <button>Edit</button>
+        <button
+        onClick={editClick}
+        >Edit</button>
     </td>
   );
 }
