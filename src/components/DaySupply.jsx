@@ -1,7 +1,14 @@
-function DaySupply() {
-  return (
-    <div>DaySupply</div>
-  )
+function DaySupply({isEditing, value}) {
+  return isEditing ? (
+    <td>
+        <input 
+        type="text"
+        value={value}
+        />
+    </td>
+  ) : (
+    <td>{value}</td>
+  );
 }
 
 export default DaySupply

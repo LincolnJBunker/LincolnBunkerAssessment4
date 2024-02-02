@@ -1,15 +1,11 @@
 import { useState } from 'react'
 import './App.css'
+import MedicationTable from './components/MedicationTable.jsx'
 
 function App() {
   
 
-  return (
-    <>
-    <h1>hello world</h1>
-        
-    </>
-  )
+  return <MedicationTable />
 }
 
 export default App
