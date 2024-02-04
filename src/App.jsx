@@ -1,8 +1,7 @@
-import { useState } from 'react'
 import './App.css'
 //import MedicationTable so you can pass it through as a prop in the return and make it display drug_data
 import MedicationTable from './components/MedicationTable.jsx'
-import drug_data from '../../docs/data-mockup.js';
+import drug_data from '../../docs/data-mockup.js'
 
 
 function App() {

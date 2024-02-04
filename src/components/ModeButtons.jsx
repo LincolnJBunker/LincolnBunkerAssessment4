@@ -1,19 +1,15 @@
-function ModeButtons({ isEditing, saveClick, editClick }) {
+function ModeButtons({ isEditing, saveClick, editClick, deleteFunc }) {
     //need to differenciate the different states of save and delete/edit
 
 
   return isEditing ? (
     <td>
-        <button
-        onClick={saveClick}
-        >Save</button>
+        <button onClick={saveClick}>Save</button>
     </td>
   ) : (
     <td>
-        <button>Delete</button>
-        <button
-        onClick={editClick}
-        >Edit</button>
+        <button onClick={deleteFunc}>Delete</button>
+        <button onClick={editClick}>Edit</button>
     </td>
   );
 }

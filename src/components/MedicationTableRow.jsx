@@ -6,7 +6,8 @@ import Refills from "./Refills"
 import Doctor from "./Doctor"
 import { useState } from "react"
 
-function MedicationTableRow({initialMedicationData, initialEditing}) {
+function MedicationTableRow({initialMedicationData, initialEditing, deleteFunc}) {
+    //make edit mode state and set its inital state to initialEditing
     const [editMode, setEditMode] = useState(initialEditing)
     //make the data types state 
     const [prescription, setPrescription] = useState(initialMedicationData.prescription);
@@ -25,14 +26,35 @@ function MedicationTableRow({initialMedicationData, initialEditing}) {
     <tr>
         <ModeButtons 
         isEditing={editMode}
-        SaveClick={makeNormalMode}
-        EditClick={makeEditMode}
+        saveClick={makeNormalMode}
+        editClick={makeEditMode}
+        deleteFunc={deleteFunc}
         />
-        <Prescription value={prescription} isEditing={initialEditing} />
-        <Doctor value={doctor} isEditing={initialEditing} />
-        <Instructions value={instructions} isEditing={initialEditing}/>
-        <DaySupply value={daySupply} isEditing={initialEditing} />
-        <Refills value={refills} isEditing={initialEditing} />
+        <Prescription 
+        isEditing={editMode}
+        value={prescription} 
+        onValueChange={setPrescription}
+         />
+        <Doctor 
+        isEditing={editMode}
+        value={doctor} 
+        onValueChange={setDoctor} 
+        />
+        <Instructions 
+        isEditing={editMode}
+        value={instructions} 
+        onValueChange={setInstructions} 
+        />
+        <DaySupply 
+        isEditing={editMode}
+        value={daySupply} 
+        onValueChange={setDaySupply}
+        />
+        <Refills 
+        isEditing={editMode}
+        value={refills} 
+        onValueChange={setRefills}
+         />
     </tr>
   )
 }

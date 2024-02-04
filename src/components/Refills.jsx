@@ -1,9 +1,10 @@
-function Refills({ isEditing, value }) {
+function Refills({ isEditing, value, onValueChange }) {
   return isEditing ? (
     <td>
         <input 
-        type="text"
+        type="number"
         value={value}
+        onChange={(e) => onValueChange(e.target.value)}
         />
     </td>
   ) : (
