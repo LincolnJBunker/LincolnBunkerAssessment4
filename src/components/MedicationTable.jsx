@@ -4,13 +4,15 @@ import AddMedicationButton from "./AddMedicationButton";
 import { useState } from "react";
 import axios from "axios";
 
+let globalId = 4
+
 
 function MedicationTable({ initialMedicationData }) {
     //Take initialData and turn it into state to not have to refresh it from app each time we modify it
     const [startingMedicationData, setStartingMedicationData] = useState(initialMedicationData)
     //pass in the prop of initialData
     //loop through each object in the testArray
-    const rows = initialMedicationData.map((medication) => {
+    const rows = startingMedicationData.map((medication) => {
         //destructure each individual medication to match the data
         const {id, prescription, doctor, instructions, daySupply, refills} = medication;
 
@@ -26,15 +28,25 @@ function MedicationTable({ initialMedicationData }) {
             />
         )
     });
+    
+    //the addRow Function needs to take in a blank medication
+    const addRow = () => {
+        //define what a new row is
+        let newRow = {
+            id: globalId,
+            prescription: "",
+            doctor: "", 
+            instructions: "",
+            daySupply: 0,
+            refills: 0
+        }
+        //increment the id each time
+        globalId++
+        
+        //make the render happen
+        setStartingMedicationData([...startingMedicationData, newRow])
 
-    // const addRow = () => {
-    //     axios.post('/medication/add')
-    //     .then((res) => {
-
-    //     });
-    //     setStartingMedicationData([...startingMedicationData, res.data.newMedication])
-
-    // }
+    }
 
     // const deleteMedication = (id) => {
     //     axios.delete(`/medication/delete/${id}`)
@@ -64,7 +76,7 @@ function MedicationTable({ initialMedicationData }) {
             </tbody>
 
             <tfoot>
-                <AddMedicationButton/>
+                <AddMedicationButton addRow={addRow}/>
             </tfoot>
         </table>
     </div>
