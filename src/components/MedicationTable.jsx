@@ -21,10 +21,10 @@ function MedicationTable({ initialMedicationData }) {
             //assing a key
             key={id}
             //start it at false
-            initialEditing={true}
+            initialEditing={false}
             initialMedicationData={{id, prescription, doctor, instructions, daySupply, refills}}
             //include the deleteMedicaiton function
-            deleteFunc={() => deleteMedication(medication.id)}
+            deleteFunc={() => deleteRow(medication.id)}
             />
         )
     });
@@ -48,21 +48,22 @@ function MedicationTable({ initialMedicationData }) {
 
     }
 
-    // const deleteMedication = (id) => {
-    //     axios.delete(`/medication/delete/${id}`)
-    //         .then((res) => {
-    //             if (res.data.status) {
-    //                 const sortedResults = startingMedicationData.filter((medication) => {
-    //                     return medication.id !== id
-    //                 })
+    //make a deleteRow function
 
-    //                 setStartingMedicationData(sortedResults)
+    const deleteRow = (id) => {
+        //make a new array from startingMedicationData that filters our the entry whose id mathces the id arguemnt here
+        console.log(id)
+        const deleteMedication = startingMedicationData.filter((medication) => {
+            if (medication.id !== id) {
+                return medication
+            }
+            
+        })
+    
+        setStartingMedicationData(deleteMedication)
+        console.log(deleteMedication)
 
-    //             } else {
-    //                 console.warn("not working")
-    //             }
-    //         })
-    // }
+    }
 
   return (
     <div>
