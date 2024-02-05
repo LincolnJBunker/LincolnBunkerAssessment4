@@ -18,7 +18,7 @@ function MedicationTable({ initialMedicationData }) {
 
         return (
             <MedicationTableRow
-            //assing a key
+            //assingn a key
             key={id}
             //start it at false
             initialEditing={false}
@@ -51,6 +51,9 @@ function MedicationTable({ initialMedicationData }) {
     //make a deleteRow function
 
     const deleteRow = (id) => {
+
+        axios.delete(`/medication/delete/${id}`)
+            .then()
         //make a new array from startingMedicationData that filters our the entry whose id mathces the id arguemnt here
         console.log(id)
         const deleteMedication = startingMedicationData.filter((medication) => {
