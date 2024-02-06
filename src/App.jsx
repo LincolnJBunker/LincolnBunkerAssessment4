@@ -4,14 +4,14 @@ import MedicationTable from './components/MedicationTable.jsx'
 import drug_data from '../public/data-mockup.js'
 
 
-function App() {
+function App({ initialMedicationData }) {
   //Medication 
   return (
   <>
   <h2>Input Your Medications Below</h2>
   
   <br />
-  <MedicationTable initialMedicationData={drug_data} />
+  <MedicationTable initialMedicationData={initialMedicationData} />
   
   </>
 

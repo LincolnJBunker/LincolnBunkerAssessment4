@@ -53,18 +53,28 @@ function MedicationTable({ initialMedicationData }) {
     const deleteRow = (id) => {
 
         axios.delete(`/medication/delete/${id}`)
-            .then()
+            .then((res) => {
+                if (res.data.status) {
+                    const deleteMedicaiton = startingMedicationData.filter((medication) => {
+                        return medication.id !== id
+                    })
+
+                    setStartingMedicationData(deleteMedicaiton)
+                } else {
+                    console.log("something ain't working right")
+                }
+            })
         //make a new array from startingMedicationData that filters our the entry whose id mathces the id arguemnt here
-        console.log(id)
-        const deleteMedication = startingMedicationData.filter((medication) => {
-            if (medication.id !== id) {
-                return medication
-            }
+        // console.log(id)
+        // const deleteMedication = startingMedicationData.filter((medication) => {
+        //     if (medication.id !== id) {
+        //         return medication
+        //     }
             
-        })
+        // })
     
-        setStartingMedicationData(deleteMedication)
-        console.log(deleteMedication)
+        // setStartingMedicationData(deleteMedication)
+        // console.log(deleteMedication)
 
     }
 
