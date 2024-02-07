@@ -5,6 +5,7 @@ import Prescription from "./Prescription"
 import Refills from "./Refills"
 import Doctor from "./Doctor"
 import { useState } from "react"
+import axios from "axios"
 
 function MedicationTableRow({initialMedicationData, initialEditing, deleteFunc}) {
     //make edit mode state and set its inital state to initialEditing
@@ -17,7 +18,20 @@ function MedicationTableRow({initialMedicationData, initialEditing, deleteFunc})
     const [refills, setRefills] = useState(initialMedicationData.refills);
 
     const makeEditMode = () => setEditMode(true);
-    const makeNormalMode = () => setEditMode(false)
+    const makeNormalMode = () => {
+      
+      const bodyObj = {
+        prescription: prescription,
+        doctor: doctor,
+        instructions: instructions,
+        daySupply: daySupply,
+        refills: refills
+      }
+      axios.put(`/medication/update/${initialMedicationData.id}`, bodyObj)
+        .then((res) => {
+          setEditMode(false)
+        })
+    }
 
     //destructure the prop initialMedicationData
     // const { prescription, doctor, instructions, daySupply, refills} = initialMedicationData

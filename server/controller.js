@@ -50,7 +50,27 @@ const handlerFunctions = {
             message: "Medication deleted successfully",
             status: true
         })
-    }
+    },
+
+    updateMedication: (req, res) => {
+        const { id } = req.params;
+        const { prescription, doctor, instructions, daySupply, refills } = req.body
+
+        const index = drug_data.findIndex((medication) => {
+            return medication.id === +id
+        })
+        const medicationToUpdate = drug_data[index];
+        medicationToUpdate.prescription = prescription
+        medicationToUpdate.doctor = doctor
+        medicationToUpdate.instructions = instructions
+        medicationToUpdate.daySupply = +daySupply
+        medicationToUpdate.refills = +refills
+
+        res.send({
+            message: "Medication Updated!",
+            updatedMedication: medicationToUpdate
+        })
+    },
 
 }
 

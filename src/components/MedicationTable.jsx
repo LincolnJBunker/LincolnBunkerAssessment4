@@ -31,20 +31,28 @@ function MedicationTable({ initialMedicationData }) {
     
     //the addRow Function needs to take in a blank medication
     const addRow = () => {
-        //define what a new row is
-        let newRow = {
-            id: globalId,
-            prescription: "",
-            doctor: "", 
-            instructions: "",
-            daySupply: 0,
-            refills: 0
-        }
-        //increment the id each time
-        globalId++
+
+        axios.post('/medication/add', {
+            prescription: "Enter Prescription Here"
+        })
+            .then((res) => {
+                setStartingMedicationData([...startingMedicationData, res.data.newMedication])
+            })
+
+        // //define what a new row is
+        // let newRow = {
+        //     id: globalId,
+        //     prescription: "",
+        //     doctor: "", 
+        //     instructions: "",
+        //     daySupply: 0,
+        //     refills: 0
+        // }
+        // //increment the id each time
+        // globalId++
         
-        //make the render happen
-        setStartingMedicationData([...startingMedicationData, newRow])
+        // //make the render happen
+        // setStartingMedicationData([...startingMedicationData, newRow])
 
     }
 
